@@ -7,6 +7,3 @@
 [submodule "shortages/scraping/static/underscore"]
 	path = shortages/scraping/static/underscore
 	url = https://github.com/documentcloud/underscore.git
-[submodule "shortages/scraping/static/jquery"]
-	path = shortages/scraping/static/jquery
-	url = https://github.com/jquery/jquery.git
