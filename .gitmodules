@@ -1,0 +1,12 @@
+[submodule "shortages/scraping/static/backbone-tastypie"]
+	path = shortages/scraping/static/backbone-tastypie
+	url = https://github.com/amccloud/backbone-tastypie
+[submodule "shortages/scraping/static/backbone"]
+	path = shortages/scraping/static/backbone
+	url = git://github.com/documentcloud/backbone.git
+[submodule "shortages/scraping/static/underscore"]
+	path = shortages/scraping/static/underscore
+	url = https://github.com/documentcloud/underscore.git
+[submodule "shortages/scraping/static/jquery"]
+	path = shortages/scraping/static/jquery
+	url = https://github.com/jquery/jquery.git

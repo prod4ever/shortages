@@ -1,0 +1,16 @@
+table td {
+    border: 1px solid grey;
+}
+#drugs li table {
+    display: none;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+#drugs li table td {
+    vertical-align: top;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+#drugs li.expanded table {
+    display: table;
+}

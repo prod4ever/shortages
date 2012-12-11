@@ -12,5 +12,6 @@ v1_api.register(ProductResource())
 
 urlpatterns = patterns('',
     (r'^api/', include(v1_api.urls)),
+    (r'$', 'scraping.views.index'),
     url(r'^admin/', include(admin.site.urls)),
 )
