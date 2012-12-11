@@ -21,7 +21,7 @@ class DrugResource(ModelResource):
         else: return ol
 
     def dehydrate(self, bundle):
-        verified = .obj.drugsupplier_set.filter(reverified__isnull=False)
+        verified = bundle.obj.drugsupplier_set.filter(reverified__isnull=False)
         if verified.count() > 0: bundle.data['last_verified'] = verified.order_by('-reverified')[0].reverified
         return bundle
 
