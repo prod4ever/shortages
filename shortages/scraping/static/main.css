@@ -1,6 +1,21 @@
 table td {
     border: 1px solid grey;
 }
+#drugs ul {
+	margin: 0;
+	padding: 0;
+}
+#drugs li {
+	display: block;
+    background: #eee;
+    padding: 3px;
+}
+#drugs li a.toggler {
+    cursor: pointer;
+}
+#drugs li .verified {
+    float: right;
+}
 #drugs li table {
     display: none;
     border-spacing: 0;

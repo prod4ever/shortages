@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from scraping.models import *
 
 CACHE_PATH = '/tmp'
+#These are the A-D, E-K, etc list pages
 URLS = (
     'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314743.htm',
     'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314739.htm',
@@ -38,12 +39,15 @@ class Command(BaseCommand):
     def parse_drug_table(self, table):
         print '--' * 20
         drug_name = self.get_drug_name(table)
+        print drug_name
+
         if not drug_name:
             raise Exception('Drug Name not found')
         self.drug = Drug.objects.create(
             name=drug_name,
             url=self.url
         )
+        #Ignore <thead> row
         rows = table.find_all('tr')[1:]
         for row in rows:
             if len(row.find_all('td')) > 2:
@@ -52,7 +56,7 @@ class Command(BaseCommand):
 
     def parse_supplier(self, row):
         print row.find_all('td')
-        supplier_name = row.find('td').text
+        supplier_name = row.find('td').text.replace(':', '\n')
 
         try:
             related_info = row.find_all('td')[3].text
@@ -77,11 +81,20 @@ class Command(BaseCommand):
         print self.ds
 
     def parse_product(self, row):
-        if len(row.find_all('td')) == 2:
+        """
+        We can have 1-2 rows in the case that this row is only a prouct (no supplier name) or 5.  
+        
+        -For Product Row
+        We always have a name in [0] and sometimes an availability in [1]
+
+        -For Supplier Row
+        We generally have a Supplier row in [0] (so its ignored here for a Product context)
+        """
+        if len(row.find_all('td')) <= 2:
             try:
                 availability = row.find_all('td')[1].text
             except:
-                pass
+                availability = None
             name = row.find_all('td')[0].text
         else:
             try:
@@ -97,18 +110,25 @@ class Command(BaseCommand):
         )
 
     def get_drug_name(self, table):
+        """
+        Extract a drug name from wierd markup above a table
+        """
         drug_el = table.find_previous()
         if drug_el.name == 'a':
             drug_el = drug_el.find_parent()
         elif drug_el.name == 'p':
             drug_el = drug_el.find('b')
         text = drug_el.text[:255]
+        if text.startswith('*'): raise Exception('Invalid drug name, cannot deal with table.')
         return text
 
     def fetch(self, url):
+        """
+        Cache html in /tmp - TODO expiration
+        """
         cache_key = url
         replace_map = {
-        '/': '', ':': '', '.': ''
+            '/': '', ':': '', '.': ''
         }
         for search, replace in replace_map.items():
             cache_key = cache_key.replace(search, replace)

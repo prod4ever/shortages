@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div id="drugs"></div>
+<div id="drugs">
+    <label>Sort By:</label>
+    <select class="order-by">
+        <option value="name">Name</option>
+        <option value="date">Date</option>
+    </select>
+    <ul class="list"></ul>
+    Page
+    <span class="current-page"></span>
+    of
+    <span class="total-pages"></span>
+    <a class="prev">Prev</a>
+    <input id="search" /><button id="search_submit">Search</button>
+    <a class="next">Next</a>
+</div>
 {% endblock %}
