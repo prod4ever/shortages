@@ -104,7 +104,7 @@ $(function() {
                 params['data']['_order'] = 'date'
                 delete params['data']['order_by']
             }
-            if (this.q) params['data']['name__contains'] = this.q
+            if (this.q) params['data']['name__icontains'] = this.q
             return params
         },
         render: function() {
