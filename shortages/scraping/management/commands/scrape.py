@@ -118,7 +118,7 @@ class Command(BaseCommand):
             drug_el = drug_el.find_parent()
         elif drug_el.name == 'p':
             drug_el = drug_el.find('b')
-        text = drug_el.text[:255]
+        text = drug_el.text[:255].strip()
         if text.startswith('*'): raise Exception('Invalid drug name, cannot deal with table.')
         return text
 
