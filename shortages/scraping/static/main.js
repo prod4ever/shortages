@@ -35,6 +35,16 @@ $(function() {
             this.$el.append($verified)
 
             var table = $('<table>')
+            var header = $('<tr>')
+            header.append($('<th>').html('Supplier'))
+            header.append($('<th>').html('Product'))
+            header.append($('<th>').html('Availability'))
+            header.append($('<th>').html('Reason'))
+            header.append($('<th>').html('Related Info'))
+            header.append($('<th>').html('Reverified'))
+
+            table.append(header)
+
             var i = 0
             _.each(this.model.get('suppliers'), function(supplier) {
                 var tr = $('<tr>')

@@ -1,3 +1,9 @@
+a { 
+    cursor: pointer;
+}
+label {
+    display: inline-block;
+}
 table td {
     border: 1px solid grey;
 }
@@ -19,6 +25,7 @@ table td {
 }
 #drugs li table {
     display: none;
+    background: white;
     border-spacing: 0;
     border-collapse: collapse;
 }
