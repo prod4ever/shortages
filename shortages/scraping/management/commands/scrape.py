@@ -1,6 +1,7 @@
 import urllib, traceback, os, logging, pdb
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
+from django.core.mail import mail_admins
 from bs4 import BeautifulSoup
 from scraping.models import *
 
@@ -12,15 +13,23 @@ URLS = (
     'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314740.htm',
     'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314741.htm',
     'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314742.htm',
-    )
+)
 
 class Command(BaseCommand):
 
     def handle(self, **options):
+        drugs_initial_count = Drug.objects.count()
         Drug.objects.all().delete()
         for url in URLS:
             self.url = url
             self.scrape_url(url)
+        drugs_final_count = Drug.objects.count()
+
+        message = """
+        Drugs before: %d
+        Drugs after: %d
+        """ % (drugs_initial_count, drugs_final_count)
+        mail_admins('Jobson Health Shortages Scraper Ran', message)
 
     def scrape_url(self, url):
         page = self.fetch(url)
