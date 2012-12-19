@@ -1,5 +1,6 @@
 from tastypie.resources import ModelResource, ALL
 from tastypie.paginator import Paginator
+from tastypie.cache import SimpleCache
 from tastypie import fields
 from .models import *
 
@@ -14,6 +15,7 @@ class DrugResource(ModelResource):
             'name': ALL,
         }
         paginator_class = Paginator
+        cache = SimpleCache()
 
     def get_object_list(self, request):
         ol = super(DrugResource, self).get_object_list(request)

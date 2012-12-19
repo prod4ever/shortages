@@ -8,7 +8,12 @@ $(function() {
 
     var DrugsList = Backbone.Tastypie.Collection.extend({
         urlRoot: '/api/v1/drug/',
-        model: Drug
+        model: Drug,
+        sync: function(method, model, options){  
+            options.timeout = 10000;  
+            options.dataType = "jsonp";  
+            return Backbone.sync(method, model, options);  
+        }  
     })
 
     var Drugs = new DrugsList()
