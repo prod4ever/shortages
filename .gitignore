@@ -1,5 +1,7 @@
 env/*
 *.pyc
+*.sqlite
+*/*.sqlite
 */*.pyc
 */.DS_Store
 .DS_Store
