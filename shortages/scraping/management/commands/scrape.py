@@ -32,6 +32,7 @@ class Command(BaseCommand):
         #mail_admins('Jobson Health Shortages Scraper Ran', message)
 
     def scrape_url(self, url):
+        print "scrape start"
         page = self.fetch(url)
         self.soup = BeautifulSoup(page, 'html5lib')
         drug_tables = self.soup.select('div[class="middle-column"] > table')
