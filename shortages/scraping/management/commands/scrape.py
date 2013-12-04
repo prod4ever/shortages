@@ -35,8 +35,8 @@ class Command(BaseCommand):
         print "scraping %s" % url
         page = self.fetch(url)
         self.soup = BeautifulSoup(page, 'html5lib')
-        print self.soup
-        drug_tables = self.soup.select('div[class="middle-column"] > table')
+        #print self.soup
+        drug_tables = self.soup.select('.middle-column > table')
         print drug_tables
 
         for table in drug_tables:
