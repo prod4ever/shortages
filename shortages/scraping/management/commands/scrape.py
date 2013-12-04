@@ -157,4 +157,5 @@ class Command(BaseCommand):
         else:
             print "cached"
             print open(cache_path, "r")
+        print open(cache_path, "r")
         return open(cache_path, 'r')
