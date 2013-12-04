@@ -29,7 +29,7 @@ class Command(BaseCommand):
         Drugs before: %d
         Drugs after: %d
         """ % (drugs_initial_count, drugs_final_count)
-        mail_admins('Jobson Health Shortages Scraper Ran', message)
+        #mail_admins('Jobson Health Shortages Scraper Ran', message)
 
     def scrape_url(self, url):
         page = self.fetch(url)
