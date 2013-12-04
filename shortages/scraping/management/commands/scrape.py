@@ -35,9 +35,9 @@ class Command(BaseCommand):
         print "scraping %s" % url
         page = self.fetch(url)
         self.soup = BeautifulSoup(page, 'html5lib')
-        #print self.soup
-        #drug_tables = self.soup.find_all('.middle-column table')
-        drug_tables = self.soup.select('table[summary="drug shortage details"]');
+        print self.soup
+        drug_tables = self.soup.find_all('.middle-column table')
+        #drug_tables = self.soup.select('table[summary="drug shortage details"]');
         print drug_tables
 
         for table in drug_tables:
@@ -139,25 +139,25 @@ class Command(BaseCommand):
         """
         Cache html in /tmp - TODO expiration
         """
-        cache_key = url
-        replace_map = {
-            '/': '', ':': '', '.': ''
-        }
-        for search, replace in replace_map.items():
-            cache_key = cache_key.replace(search, replace)
-        cache_path = os.path.join(CACHE_PATH, cache_key)
-        print cache_path
-        if not os.path.exists(cache_path):
-            logging.info('Downloading file at %s to %s' % (url, cache_path))
-            print "getting new copy"
-            page = urllib.urlopen(url)
-            cache = open(cache_path, 'w')
-            cache.write(page.read())
-            cache.close()
-        else:
-            print "cached"
-            print open(cache_path, "r")
-        i = open(cache_path, "r")
-        print i.read()
-        return i.read()
-        return open(cache_path, 'r')
+        #cache_key = url
+        #replace_map = {
+        #    '/': '', ':': '', '.': ''
+        #}
+        #for search, replace in replace_map.items():
+        #    cache_key = cache_key.replace(search, replace)
+        #cache_path = os.path.join(CACHE_PATH, cache_key)
+        print url
+        #if not os.path.exists(cache_path):
+        #logging.info('Downloading file at %s to %s' % (url, cache_path))
+        print "getting new copy"
+        page = urllib.urlopen(url)
+        return page.read()
+        #cache = open(cache_path, 'w')
+        #cache.write(page.read())
+        #cache.close()
+        #else:
+        #    print "cached"
+         #   print open(cache_path, "r")
+        
+
+        #return open(cache_path, 'r')
