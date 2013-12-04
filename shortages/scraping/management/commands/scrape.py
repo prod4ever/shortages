@@ -146,10 +146,15 @@ class Command(BaseCommand):
         for search, replace in replace_map.items():
             cache_key = cache_key.replace(search, replace)
         cache_path = os.path.join(CACHE_PATH, cache_key)
+        print cache_path
         if not os.path.exists(cache_path):
             logging.info('Downloading file at %s to %s' % (url, cache_path))
+            print "getting new copy"
             page = urllib.urlopen(url)
             cache = open(cache_path, 'w')
             cache.write(page.read())
             cache.close()
+        else:
+            print "cached"
+            print open(cache_path, "r")
         return open(cache_path, 'r')
