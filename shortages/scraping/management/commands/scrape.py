@@ -9,10 +9,10 @@ CACHE_PATH = '/tmp'
 #These are the A-D, E-K, etc list pages
 URLS = (
     'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314743.htm',
-    'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314739.htm',
-    'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314740.htm',
-    'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314741.htm',
-    'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314742.htm',
+    'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314739.htm'
+    #'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314740.htm',
+    #'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314741.htm',
+    #'http://www.fda.gov/Drugs/DrugSafety/DrugShortages/ucm314742.htm',
 )
 
 class Command(BaseCommand):
