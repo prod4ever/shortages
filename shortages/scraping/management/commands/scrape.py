@@ -36,7 +36,7 @@ class Command(BaseCommand):
         page = self.fetch(url)
         self.soup = BeautifulSoup(page, 'html5lib')
         #print self.soup
-        drug_tables = self.soup.find_all('.middle-column > table')
+        drug_tables = self.soup.find_all('.middle-column table')
         print drug_tables
 
         for table in drug_tables:
