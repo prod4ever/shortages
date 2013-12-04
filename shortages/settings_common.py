@@ -1,7 +1,7 @@
 # Django settings for shortages project.
 
 ADMINS = (
-    ('LLC', 'lincoln@prod4ever.com'),
+    ('LLC', 'jeremy@prod4ever.com'),
 )
 
 MANAGERS = ADMINS
